@@ -5,7 +5,7 @@ module(name = "tazelish", version = "0.1.0")
 
 bazel_dep(name = "rules_cc", version = "0.2.22")
 bazel_dep(name = "platforms", version = "1.0.0")
-bazel_dep(name = "fmt", version = "12.1.0")
+bazel_dep(name = "fmt", version = "12.2.0.bcr.1")
 
 # Catch3 is not in the Bazel Central Registry; its release archive is taken
 # from GitHub and checked against this digest.
