@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
+# SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0
+
+common --enable_bzlmod
+common --enable_platform_specific_config
+
+build --incompatible_strict_action_env
+build --verbose_failures
+
+# The code of Tazelish throws no exceptions and is held to the warnings below;
+# the dependencies keep their own settings. The tests leave out -Wconversion,
+# which the headers of Catch3 do not pass.
+# rules_cc finds clang-cl through BAZEL_LLVM, which each machine sets; no
+# path of a machine is written here.
+build:windows --repo_env=BAZEL_LLVM
+build:windows --repo_env=USE_CLANG_CL=1
+build:windows --compiler=clang-cl
+build:windows --cxxopt=/std:c++17
+build:windows --host_cxxopt=/std:c++17
+build:windows --cxxopt=/utf-8
+build:windows --cxxopt=/Zc:__cplusplus
+build:windows --features=static_link_msvcrt
+build:windows --per_file_copt=^Sources/.*@/clang:-Wall,/clang:-Wextra,/clang:-Wpedantic,/clang:-Werror,/clang:-Wshadow,/clang:-Wconversion,/clang:-Wnon-virtual-dtor,/clang:-Wimplicit-fallthrough
+build:windows --per_file_copt=^Tests/.*@/clang:-Wall,/clang:-Wextra,/clang:-Wpedantic,/clang:-Werror,/clang:-Wshadow,/clang:-Wnon-virtual-dtor,/clang:-Wimplicit-fallthrough
+build:windows --per_file_copt=^Sources/.*@/EHs-c-,/clang:-fno-exceptions
+
+build:linux --compiler=clang
+build:linux --repo_env=CC=clang
+build:linux --repo_env=BAZEL_COMPILER=clang
+build:linux --cxxopt=-std=c++17
+build:linux --host_cxxopt=-std=c++17
+build:linux --per_file_copt=^Sources/.*@-Wall,-Wextra,-Wpedantic,-Werror,-Wshadow,-Wconversion,-Wnon-virtual-dtor,-Wimplicit-fallthrough
+build:linux --per_file_copt=^Tests/.*@-Wall,-Wextra,-Wpedantic,-Werror,-Wshadow,-Wnon-virtual-dtor,-Wimplicit-fallthrough
+build:linux --per_file_copt=^Sources/.*@-fno-exceptions
+
+build:macos --compiler=clang
+build:macos --cxxopt=-std=c++17
+build:macos --host_cxxopt=-std=c++17
+build:macos --per_file_copt=^Sources/.*@-Wall,-Wextra,-Wpedantic,-Werror,-Wshadow,-Wconversion,-Wnon-virtual-dtor,-Wimplicit-fallthrough
+build:macos --per_file_copt=^Tests/.*@-Wall,-Wextra,-Wpedantic,-Werror,-Wshadow,-Wnon-virtual-dtor,-Wimplicit-fallthrough
+build:macos --per_file_copt=^Sources/.*@-fno-exceptions
+
+test --test_output=errors

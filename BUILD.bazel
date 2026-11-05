@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
+# SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0
+
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_library(
+    name = "tazelish_library",
+    srcs = [
+        "Sources/CommandLine.cpp",
+        "Sources/Help.cpp",
+        "Sources/Version.cpp",
+        "Sources/VersionFiles.cpp",
+    ],
+    hdrs = glob(["Headers/Progmasoft/Tazelish/*.hpp"]),
+    includes = ["Headers"],
+    visibility = ["//Tests:__pkg__"],
+    deps = ["@fmt"],
+)
+
+cc_binary(
+    name = "tazelish",
+    srcs = ["Sources/Main.cpp"],
+    deps = [":tazelish_library"],
+)

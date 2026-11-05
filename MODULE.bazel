@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
+# SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0
+
+module(name = "tazelish", version = "0.1.0")
+
+bazel_dep(name = "rules_cc", version = "0.2.22")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "fmt", version = "12.1.0")
+
+# Catch3 is not in the Bazel Central Registry; its release archive is taken
+# from GitHub and checked against this digest.
+bazel_dep(name = "catch3", version = "0.3.0.2", dev_dependency = True)
+archive_override(
+    module_name = "catch3",
+    integrity = "sha256-FoE/f8D/iFS1aSdh6i8Xy5RxMGwOBo5ECwbK8pfeE7E=",
+    strip_prefix = "catch3-catch3-0.3.0.2",
+    urls = ["https://github.com/Progmasoft/catch3/archive/refs/tags/catch3-0.3.0.2.tar.gz"],
+)
+
+# rules_cc 0.2.22 forgets to populate DUMPBIN in its clang-cl branch but reads
+# the key unconditionally; the same one-line fix as in the Tala repository.
+single_version_override(
+    module_name = "rules_cc",
+    patch_strip = 0,
+    patches = ["//Build:rules_cc_clangcl_dumpbin.patch"],
+    version = "0.2.22",
+)
