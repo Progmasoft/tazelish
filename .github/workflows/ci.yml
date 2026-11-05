@@ -50,7 +50,7 @@ jobs:
           --combined_report=lcov
           --instrumentation_filter=^//:
           --repo_env=BAZEL_USE_LLVM_NATIVE_COVERAGE=1
-          --repo_env=GCOV=/usr/bin/llvm-profdata-18
+          --repo_env=BAZEL_LLVM_PROFDATA=/usr/bin/llvm-profdata-18
           --repo_env=BAZEL_LLVM_COV=/usr/bin/llvm-cov-18
       - run: cp "$(bazelisk info output_path)/_coverage/_coverage_report.dat" lcov.info
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
