@@ -1,0 +1,37 @@
+// SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
+// SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0
+
+// Renovate proposes the version updates of this repository: the Bazel modules
+// of MODULE.bazel, Bazel itself in .bazelversion, and the GitHub Actions.
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended", "helpers:pinGitHubActionDigests"],
+
+  timezone: "Europe/Istanbul",
+  // Once a week, before the working day.
+  schedule: ["before 6am on monday"],
+
+  // A release is taken a week after it is published: one that turns out to
+  // be broken or malicious is usually withdrawn within days.
+  minimumReleaseAge: "7 days",
+
+  // A pull request is rebased when it conflicts, not whenever the default
+  // branch moves.
+  rebaseWhen: "conflicted",
+  prConcurrentLimit: 2,
+  prHourlyLimit: 2,
+  dependencyDashboard: true,
+
+  // Security fixes come from Dependabot security updates.
+  vulnerabilityAlerts: { enabled: false },
+
+  enabledManagers: ["github-actions", "bazel-module", "bazelisk"],
+
+  packageRules: [
+    { matchManagers: ["github-actions"], groupName: "GitHub Actions" },
+    { matchManagers: ["bazel-module", "bazelisk"], groupName: "Bazel" },
+    // rules_cc carries a patch for clang-cl; a new version needs the patch
+    // checked against it, so it is never merged on its own.
+    { matchPackageNames: ["rules_cc"], automerge: false, dependencyDashboardApproval: true },
+  ],
+}
