@@ -7,8 +7,8 @@
 PROJECT_NAME           = Tazelish
 PROJECT_BRIEF          = "The installer of Tazel"
 OUTPUT_DIRECTORY       = doxygen
-INPUT                  = README.md Headers
-FILE_PATTERNS          = *.hpp
+INPUT                  = README.md PATENTS.md Headers
+FILE_PATTERNS          = *.hpp *.md
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = README.md
 EXTRACT_ALL            = NO
