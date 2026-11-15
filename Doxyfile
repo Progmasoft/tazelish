@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
-# SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0
+# SPDX-License-Identifier: MIT
 #
 # The reference of the headers: doxygen writes doxygen/html. Every
 # warning fails the build, an undocumented declaration included.
