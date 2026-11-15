@@ -20,6 +20,8 @@ WARN_AS_ERROR          = FAIL_ON_WARNINGS
 QUIET                  = YES
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
+# The reference has no graphs, so nothing needs Graphviz.
+HAVE_DOT               = NO
 FULL_PATH_NAMES        = YES
 STRIP_FROM_PATH        = Headers
 STRIP_FROM_INC_PATH    = Headers
