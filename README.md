@@ -1,5 +1,5 @@
 <!-- SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com> -->
-<!-- SPDX-License-Identifier: MPL-2.0 WITH AdditionRef-Progmasoft-Exception-2.0 -->
+<!-- SPDX-License-Identifier: MIT -->
 
 # Tazelish
 
@@ -46,5 +46,5 @@ On Windows it is compiled by clang-cl: set `BAZEL_LLVM` to the folder of an LLVM
 
 ## Licence
 
-MPL-2.0 with the Progmasoft Exception 2.0; see [LICENSE.txt](LICENSE.txt) and
-[LICENSES/](LICENSES/AdditionRef-Progmasoft-Exception-2.0.txt).
+[MIT](LICENSE.txt). The rules_cc patch in `Build/` is a change to rules_cc and keeps its license,
+Apache-2.0.
