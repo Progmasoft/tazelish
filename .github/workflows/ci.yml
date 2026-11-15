@@ -80,13 +80,39 @@ jobs:
           files: lcov.info
           fail_ci_if_error: true
 
+  doxygen:
+    name: Doxygen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends doxygen
+
+      # Every warning fails, an undocumented declaration included.
+      - name: Build the reference of the headers
+        run: doxygen Doxyfile
+
+      - name: Keep the reference
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tazelish-doxygen
+          path: doxygen/html/
+          if-no-files-found: error
+          retention-days: 7
+
   required:
     name: CI Required
     if: always()
-    needs: [test]
+    needs: [test, doxygen]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - env:
-          RESULT: ${{ needs.test.result }}
-        run: test "$RESULT" = success
+          RESULTS: ${{ needs.test.result }} ${{ needs.doxygen.result }}
+        run: test "$RESULTS" = "success success"
