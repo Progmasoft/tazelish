@@ -15,6 +15,8 @@ namespace Progmasoft::Tazelish
 {
 
     /// The general help without a topic, or the help of one command.
+    /// @param topic The command to explain, or nothing.
+    /// @return The text to print, ending with a newline.
     [[nodiscard]] std::string_view
     HelpText(std::optional<Topic> topic);
 

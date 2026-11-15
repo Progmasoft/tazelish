@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2026 Progmasoft <support@progmasoft.com>
+# SPDX-License-Identifier: MIT
+#
+# The reference of the headers: doxygen writes doxygen/html. Every
+# warning fails the build, an undocumented declaration included.
+
+PROJECT_NAME           = Tazelish
+PROJECT_BRIEF          = "The installer of Tazel"
+OUTPUT_DIRECTORY       = doxygen
+INPUT                  = README.md Headers
+FILE_PATTERNS          = *.hpp
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = FAIL_ON_WARNINGS
+QUIET                  = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+# The reference has no graphs, so nothing needs Graphviz.
+HAVE_DOT               = NO
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = Headers
+STRIP_FROM_INC_PATH    = Headers
