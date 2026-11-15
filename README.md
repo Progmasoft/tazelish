@@ -3,8 +3,7 @@
 
 # Tazelish
 
-Tazelish installs [Tazel](https://tazel.net/) and chooses which version of it runs. It is for those who use Tazel
-alone; the toolchain manager of the whole of Tala is Talup. Tazelish runs on Linux (glibc 2.39 or newer, or musl 1.2.4
+Tazelish installs [Tazel](https://tazel.net/) and chooses which version of it runs. Tazelish runs on Linux (glibc 2.39 or newer, or musl 1.2.4
 or newer), macOS 14 or newer and Windows with PowerShell 5.1; it does not run on BSD.
 
 ```text

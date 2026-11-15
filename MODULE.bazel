@@ -18,7 +18,7 @@ archive_override(
 )
 
 # rules_cc 0.2.22 forgets to populate DUMPBIN in its clang-cl branch but reads
-# the key unconditionally; the same one-line fix as in the Tala repository.
+# the key unconditionally; a one-line patch fills it in.
 single_version_override(
     module_name = "rules_cc",
     patch_strip = 0,
