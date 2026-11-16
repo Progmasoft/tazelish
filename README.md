@@ -48,3 +48,4 @@ On Windows it is compiled by clang-cl: set `BAZEL_LLVM` to the folder of an LLVM
 
 [MIT](LICENSE.txt). The rules_cc patch in `Build/` is a change to rules_cc and keeps its license,
 Apache-2.0.
+Progmasoft's own code is also covered by the [Progmasoft Patent Grant 1.1](PATENTS.md).
