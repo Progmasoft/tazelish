@@ -1,0 +1,4 @@
+/bazel-*
+/.cache/
+/build/
+*.swp
